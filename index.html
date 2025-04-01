@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor Elegante - Restaurante Gourmet</title>
+    <link rel="icon" href="https://i.imgur.com/qk58H1u.png" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --dark-blue: #1A3A5F;
+            --medium-blue: #2A4E77;
+            --light-blue: #3A6B9F;
+            --gold: #D4AF37;
+            --light-gold: #E8D9A0;
+            --cream: #F8F5F0;
+            --dark: #2C2C2C;
+            --light-gray: #E9ECEF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--cream);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        .navbar {
+            background-color: var(--dark-blue);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white !important;
+            font-weight: 700;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .contact-icon {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .contact-icon:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 58, 95, 0.7), rgba(26, 58, 95, 0.7)),
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInDown 1.5s ease-out;
+            color: white;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark-blue);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s;
+            animation: pulse 2s infinite 1.5s;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--light-gold);
+            border-color: var(--light-gold);
+            color: var(--dark-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline-gold {
+            border-color: var(--gold);
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .btn-outline-gold:hover {
+            background-color: var(--gold);
+            color: var(--dark-blue);
+        }
+
+        .btn-gold::after, .btn-outline-gold::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255,255,255,0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .btn-gold:focus:not(:active)::after, .btn-outline-gold:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        .section-title {
+            color: var(--dark-blue);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+
+        .product-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .product-section:nth-child(odd) {
+            background-color: var(--cream);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .badge-destaque {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--gold);
+            color: var(--dark-blue);
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        .about-section {
+            padding: 80px 0;
+            background: linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.9)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .testimonials-section {
+            padding: 80px 0;
+            background-color: var(--dark-blue);
+            color: white;
+        }
+
+        .testimonial-card {
+            background-color: var(--medium-blue);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .reservation-section {
+            padding: 80px 0;
+            background: linear-gradient(rgba(26, 58, 95, 0.8), rgba(26, 58, 95, 0.8)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .form-control {
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            background-color: rgba(255,255,255,0.2);
+            border-color: var(--gold);
+            color: white;
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-logo i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+
+        .footer-links h4 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--gold);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Efeito de flutuação para a imagem de fundo */
+        @keyframes floatBackground {
+            0% {
+                background-position: center center;
+            }
+            50% {
+                background-position: center 60%;
+            }
+            100% {
+                background-position: center center;
+            }
+        }
+
+        /* Efeito de pulsação para o botão */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+
+        /* Efeito de ripple para o botão */
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+
+        /* Efeitos de entrada */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efeito de confete */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--gold);
+            opacity: 0;
+            z-index: 10;
+            animation: confetti 5s ease-in-out;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Animação para as seções */
+        .animate-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .navbar-nav {
+                margin-top: 15px;
+            }
+            
+            .nav-link {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar/Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-utensils"></i>Sabor Elegante
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Depoimentos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reservation">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content container">
+            <h1>Sabor Elegante</h1>
+            <p>Experiências gastronômicas memoráveis em um ambiente sofisticado</p>
+            <a href="#menu" class="btn btn-gold btn-lg me-2" id="mainButton">
+                <i class="fas fa-utensils me-2"></i>Ver Cardápio
+            </a>
+            <a href="#reservation" class="btn btn-outline-gold btn-lg">
+                <i class="fas fa-calendar-alt me-2"></i>Reservar Mesa
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section animate-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Nossa História</h2>
+                    <p class="lead">Fundado em 2010, o Sabor Elegante nasceu da paixão pela gastronomia refinada e pelo atendimento impecável.</p>
+                    <p>Nosso chef executivo, formado nas melhores escolas de culinária da França, traz para sua mesa uma combinação única de técnicas tradicionais e inovações contemporâneas.</p>
+                    <p>Utilizamos apenas ingredientes frescos e de alta qualidade, muitos deles provenientes de produtores locais que compartilham nosso compromisso com a excelência.</p>
+                    <p>Nossa carta de vinhos foi cuidadosamente selecionada para complementar cada prato, oferecendo uma experiência gastronômica completa.</p>
+                    <a href="#reservation" class="btn btn-gold mt-3">Reserve sua Experiência</a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80" alt="Chef preparando prato" class="img-fluid rounded shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="product-section">
+        <div class="container">
+            <h2 class="text-center section-title">Nosso Cardápio</h2>
+            <p class="text-center mb-5">Explore nossa seleção de pratos cuidadosamente preparados por nossos chefs</p>
+            
+            <ul class="nav nav-tabs justify-content-center mb-5" id="menuTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="entradas-tab" data-bs-toggle="tab" data-bs-target="#entradas" type="button" role="tab">Entradas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="carnes-tab" data-bs-toggle="tab" data-bs-target="#carnes" type="button" role="tab">Carnes</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="frutos-tab" data-bs-toggle="tab" data-bs-target="#frutos" type="button" role="tab">Frutos do Mar</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="massas-tab" data-bs-toggle="tab" data-bs-target="#massas" type="button" role="tab">Massas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="vegetariano-tab" data-bs-toggle="tab" data-bs-target="#vegetariano" type="button" role="tab">Vegetariano</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="sobremesas-tab" data-bs-toggle="tab" data-bs-target="#sobremesas" type="button" role="tab">Sobremesas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="bebidas-tab" data-bs-toggle="tab" data-bs-target="#bebidas" type="button" role="tab">Bebidas</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="menuTabsContent">
+                <div class="tab-pane fade show active" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
+                    <div class="row" id="entradas-container"></div>
+                </div>
+                <div class="tab-pane fade" id="carnes" role="tabpanel" aria-labelledby="carnes-tab">
+                    <div class="row" id="carnes-container"></div>
+                </div>
+                <div class="tab-pane fade" id="frutos" role="tabpanel" aria-labelledby="frutos-tab">
+                    <div class="row" id="frutos-container"></div>
+                </div>
+                <div class="tab-pane fade" id="massas" role="tabpanel" aria-labelledby="massas-tab">
+                    <div class="row" id="massas-container"></div>
+                </div>
+                <div class="tab-pane fade" id="vegetariano" role="tabpanel" aria-labelledby="vegetariano-tab">
+                    <div class="row" id="vegetariano-container"></div>
+                </div>
+                <div class="tab-pane fade" id="sobremesas" role="tabpanel" aria-labelledby="sobremesas-tab">
+                    <div class="row" id="sobremesas-container"></div>
+                </div>
+                <div class="tab-pane fade" id="bebidas" role="tabpanel" aria-labelledby="bebidas-tab">
+                    <div class="row" id="bebidas-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section animate-section">
+        <div class="container">
+            <h2 class="text-center section-title" style="color: white;">O Que Dizem Nossos Clientes</h2>
+            <p class="text-center mb-5" style="color: rgba(255,255,255,0.8);">A opinião de quem já experimentou nossa gastronomia</p>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <i class="fas fa-quote-left me-2"></i>Uma experiência gastronômica inesquecível! Cada prato foi uma verdadeira obra de arte, tanto visual quanto no paladar. O serviço foi impecável e o ambiente é sofisticado e acolhedor.
+                        </div>
+                        <div class="testimonial-author">- Ana Carolina Silva</div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <i class="fas fa-quote-left me-2"></i>O melhor restaurante da cidade! A costela Angus de 12h é divina, derrete na boca. A carta de vinhos é excelente e o sommelier nos ajudou a escolher o vinho perfeito para acompanhar nosso jantar.
+                        </div>
+                        <div class="testimonial-author">- Ricardo Oliveira</div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <i class="fas fa-quote-left me-2"></i>Celebramos nosso aniversário de casamento no Sabor Elegante e foi perfeito! A equipe preparou uma mesa especial com vista para o jardim e até um pequeno bolo de surpresa. Comida excepcional e serviço de primeira.
+                        </div>
+                        <div class="testimonial-author">- Marcos e Juliana</div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="reservation-section animate-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="text-center section-title" style="color: var(--gold);">Reserve sua Mesa</h2>
+                    <p class="text-center mb-5">Garanta sua experiência gastronômica conosco</p>
+                    
+                    <form id="reservationForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Seu Nome" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Seu Email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" placeholder="Telefone" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" class="form-control" placeholder="Número de Pessoas" min="1" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="time" class="form-control" required>
+                            </div>
+                        </div>
+                        <textarea class="form-control" rows="4" placeholder="Observações (alergias, ocasião especial, etc.)"></textarea>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-gold btn-lg">Reservar Mesa</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo">
+                        <i class="fas fa-utensils"></i>Sabor Elegante
+                    </div>
+                    <p>Oferecendo experiências gastronômicas memoráveis desde 2010. Nossa missão é surpreender e encantar cada cliente que nos honra com sua visita.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h4>Links Rápidos</h4>
+                        <ul>
+                            <li><a href="#home">Início</a></li>
+                            <li><a href="#about">Sobre Nós</a></li>
+                            <li><a href="#menu">Cardápio</a></li>
+                            <li><a href="#testimonials">Depoimentos</a></li>
+                            <li><a href="#reservation">Reservas</a></li>
+                            <li><a href="#contact">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h4>Contato</h4>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> Av. Gourmet, 123 - Bairro Elegante</p>
+                        <p><i class="fas fa-phone me-2"></i> (11) 9876-5432</p>
+                        <p><i class="fas fa-envelope me-2"></i> contato@saborelegante.com</p>
+                        <p><i class="fas fa-clock me-2"></i> Ter-Sex: 18h-23h | Sáb-Dom: 12h-23h</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Sabor Elegante. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Script principal -->
+    <script>
+        // Configuração do Supabase
+        const SUPABASE_URL = 'https://tinpittfpscsftxotbvs.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpbnBpdHRmcHNjc2Z0eG90YnZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM1MjI2NjQsImV4cCI6MjA1OTA5ODY2NH0.Eqnorc-Az7JEN5fLaBfsE0mZNf5tASOcrVLcLfmzUuA';
+
+        // Função para inicializar o Supabase
+        async function initSupabase() {
+            try {
+                // Cria o cliente Supabase
+                const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                
+                // Testa a conexão
+                const { data, error } = await supabaseClient
+                    .from('produto')
+                    .select('*')
+                    .limit(1);
+                
+                if (error) throw error;
+                
+                return supabaseClient;
+            } catch (error) {
+                console.error('Erro ao conectar com Supabase:', error);
+                throw error;
+            }
+        }
+
+        // Função para criar confetes
+        function createConfetti() {
+            const colors = ['#D4AF37', '#E8D9A0', '#FFFFFF', '#1A3A5F', '#2A4E77'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove o confete após a animação terminar
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Função para animar as seções ao rolar
+        function animateOnScroll() {
+            const sections = document.querySelectorAll('.animate-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Função para preencher o cardápio
+        async function fillMenu(supabaseClient) {
+            try {
+                // Busca todos os produtos de uma vez
+                const { data: produtos, error } = await supabaseClient
+                    .from('produto')
+                    .select('*')
+                    .order('nome', { ascending: true });
+
+                if (error) throw error;
+                console.log('Produtos recebidos:', produtos);
+
+                if (!produtos || produtos.length === 0) {
+                    console.log('Nenhum produto encontrado no banco de dados');
+                    showNoProductsMessage();
+                    return;
+                }
+
+                // Separa os produtos por categoria
+                const produtosPorCategoria = {
+                    entradas: produtos.filter(p => p.categoria_id === 1),
+                    carnes: produtos.filter(p => p.categoria_id === 5),
+                    frutos: produtos.filter(p => p.categoria_id === 6),
+                    massas: produtos.filter(p => p.categoria_id === 7),
+                    vegetariano: produtos.filter(p => p.categoria_id === 8),
+                    sobremesas: produtos.filter(p => p.categoria_id === 3),
+                    bebidas: produtos.filter(p => p.categoria_id === 4)
+                };
+
+                // Preenche cada seção do cardápio
+                fillMenuSection('entradas-container', produtosPorCategoria.entradas);
+                fillMenuSection('carnes-container', produtosPorCategoria.carnes);
+                fillMenuSection('frutos-container', produtosPorCategoria.frutos);
+                fillMenuSection('massas-container', produtosPorCategoria.massas);
+                fillMenuSection('vegetariano-container', produtosPorCategoria.vegetariano);
+                fillMenuSection('sobremesas-container', produtosPorCategoria.sobremesas);
+                fillMenuSection('bebidas-container', produtosPorCategoria.bebidas);
+
+            } catch (error) {
+                console.error('Erro ao carregar o cardápio:', error);
+                alert('Erro ao carregar o cardápio. Por favor, recarregue a página.');
+            }
+        }
+
+        // Função para preencher uma seção específica do cardápio
+        function fillMenuSection(containerId, produtos) {
+            const container = document.getElementById(containerId);
+            
+            if (!container) {
+                console.error(`Elemento #${containerId} não encontrado`);
+                return;
+            }
+
+            container.innerHTML = '';
+
+            if (!produtos || produtos.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fas fa-utensils fa-3x mb-3" style="color: #ccc;"></i>
+                        <p class="text-muted">Nenhum item disponível nesta categoria no momento</p>
+                    </div>`;
+                return;
+            }
+
+            produtos.forEach(produto => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4 mb-4';
+                
+                col.innerHTML = `
+                    <div class="card h-100">
+                        ${produto.destaque ? '<span class="badge-destaque">Destaque</span>' : ''}
+                        <img src="${produto.imagem_url || 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'}" class="card-img-top" alt="${produto.nome}">
+                        <div class="card-body">
+                            <h5 class="card-title">${produto.nome}</h5>
+                            <p class="card-text">${produto.descricao || 'Descrição não disponível'}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">R$ ${produto.valor?.toFixed(2) || '0.00'}</span>
+                                <button class="btn btn-sm btn-outline-gold">+ Detalhes</button>
+                            </div>
+                        </div>
+                    </div>`;
+                
+                container.appendChild(col);
+            });
+        }
+
+        // Mostra mensagem quando não há produtos
+        function showNoProductsMessage() {
+            const containers = [
+                'entradas-container', 'carnes-container', 'frutos-container',
+                'massas-container', 'vegetariano-container', 'sobremesas-container',
+                'bebidas-container'
+            ];
+            
+            containers.forEach(containerId => {
+                const container = document.getElementById(containerId);
+                if (container) {
+                    container.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <i class="fas fa-utensils fa-3x mb-3" style="color: #ccc;"></i>
+                            <p class="text-muted">Nenhum item disponível nesta categoria no momento</p>
+                        </div>`;
+                }
+            });
+        }
+
+        // Função principal
+        async function initializeApp() {
+            try {
+                console.log('Iniciando aplicação...');
+                
+                const supabaseClient = await initSupabase();
+                
+                // Preenche o cardápio
+                await fillMenu(supabaseClient);
+                
+                // Anima as seções quando aparecem na tela
+                animateOnScroll();
+                
+                // Adiciona efeito de confete ao clicar no botão principal
+                document.getElementById('mainButton').addEventListener('click', function(e) {
+                    createConfetti();
+                });
+                
+                // Formulário de reserva
+                document.getElementById('reservationForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Reserva enviada com sucesso! Entraremos em contato para confirmação.');
+                    this.reset();
+                    createConfetti();
+                });
+
+            } catch (error) {
+                console.error('Erro na inicialização:', error);
+                if (error.code === '42P01') {
+                    alert('Tabela Produto não encontrada. Verifique se criou a tabela no Supabase.');
+                } else {
+                    alert('Erro ao carregar os dados. Por favor, recarregue a página.');
+                }
+            }
+        }
+
+        // Inicia a aplicação quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html>
